@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev:jss": "vite --mode jsserver",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "mocks": "json-server --watch db/customers.json --routes db/routes.json --port 3000 "
   },
   "dependencies": {
+    "json-server": "^0.17.1",
     "primeicons": "^6.0.1",
     "primevue": "^3.18.1",
     "vue": "^3.2.41",

@@ -16,7 +16,8 @@
         "name": "Ioni Bowcher",
         "image": "ionibowcher.png"
       },
-      "balance": 70663
+      "balance": 70663,
+      "avatar": "https://api.lorem.space/image/face?w=150&h=150"
     },
     {
       "id": 1001,
@@ -34,7 +35,8 @@
         "name": "Amy Elsner",
         "image": "amyelsner.png"
       },
-      "balance": 82429
+      "balance": 82429,
+      "avatar": "https://api.lorem.space/image/face?w=150&h=150"
     },
     {
       "id": 1002,
@@ -52,7 +54,8 @@
         "name": "Asiya Javayant",
         "image": "asiyajavayant.png"
       },
-      "balance": 28334
+      "balance": 28334,
+      "avatar": "https://api.lorem.space/image/face?w=150&h=150"
     },
     {
       "id": 1003,
@@ -70,7 +73,8 @@
         "name": "Xuxue Feng",
         "image": "xuxuefeng.png"
       },
-      "balance": 88521
+      "balance": 88521,
+      "avatar": "https://api.lorem.space/image/face?w=150&h=150"
     },
     {
       "id": 1004,
@@ -88,7 +92,8 @@
         "name": "Asiya Javayant",
         "image": "asiyajavayant.png"
       },
-      "balance": 93905
+      "balance": 93905,
+      "avatar": "https://api.lorem.space/image/face?w=150&h=150"
     },
     {
       "id": 1005,
@@ -106,7 +111,8 @@
         "name": "Ivan Magalhaes",
         "image": "ivanmagalhaes.png"
       },
-      "balance": 50041
+      "balance": 50041,
+      "avatar": "https://api.lorem.space/image/face?w=150&h=150"
     },
     {
       "id": 1006,

@@ -20,7 +20,6 @@ onMounted(() => {
   });
 });
 const customers = ref();
-//const selectedCustomers = ref();
 
 const customerService = ref(new CustomerService());
 const loading = ref(true);

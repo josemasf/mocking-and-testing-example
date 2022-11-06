@@ -61,11 +61,6 @@
         style="min-width: 14rem"
       >
         <template #body="{ data }">
-          <img
-            src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-            width="30"
-            style="vertical-align: middle"
-          />
           <span class="image-text">{{ data.country.name }}</span>
         </template>
         <template #filter="{ filterModel }">
@@ -88,7 +83,8 @@
       >
         <template #body="{ data }">
           <img
-            src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+            v-if="data.avatar"
+            :src="data.avatar"
             width="30"
             style="vertical-align: middle"
           />
@@ -226,17 +222,6 @@ const props = defineProps({
   loading: Boolean,
 });
 
-/*onMounted(() => {
-  customerService.value.getCustomersLarge().then((data) => {
-    customers.value = data;
-    customers.value.forEach(
-      (customer) => (customer.date = new Date(customer.date))
-    );
-    loading.value = false;
-  });
-});*/
-
-const customers = ref(props.data);
 const selectedCustomers = ref();
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -265,7 +250,6 @@ const filters = ref({
   verified: { value: null, matchMode: FilterMatchMode.EQUALS },
 });
 
-const loading = ref(true);
 const representatives = [
   { name: "Amy Elsner", image: "amyelsner.png" },
   { name: "Anna Fali", image: "annafali.png" },
