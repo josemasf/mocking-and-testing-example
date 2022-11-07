@@ -66,14 +66,42 @@ describe("FromApiView", () => {
           plugins: [PrimeVue],
         },
       });
-      expect(getByText(/Selected customers: 0/i));
+
+      await waitFor(
+        async () => {
+          expect(getByText(/Selected customers: 0/i));
+          const check = await getAllByRole("checkbox");
+
+          await fireEvent.click(check[1]);
+          await fireEvent.click(check[2]);
+
+          expect(getByText(/Selected customers: 2/i));
+        },
+        { timeout: 2000 }
+      );
+    });
+  });
+  describe("Filtering", () => {
+    it("should filter using heading", async () => {
+      const { getByPlaceholderText, getByText, getAllByRole, getByLabelText } =
+        render(FromApiView, {
+          global: {
+            plugins: [PrimeVue],
+          },
+        });
+
+      const buttons = await getAllByRole("button");
       await waitFor(async () => {
-        const check = await getAllByRole("checkbox");
+        await fireEvent.click(buttons[1]);
 
-        await fireEvent.click(check[1]);
-        await fireEvent.click(check[2]);
+        const input = getByPlaceholderText("Search by country");
 
-        expect(getByText(/Selected customers: 2/i));
+        await fireEvent.update(input, "Algeria");
+
+        const buttonApply = getByLabelText("Apply");
+
+        await fireEvent.click(buttonApply);
+        getByText("Showing 1 to 1 of 1 entries");
       });
     });
   });
