@@ -1,7 +1,14 @@
 <template>
   <main>
-    <div class="url-api">URL API: {{ urlApi }}</div>
-    <GridData :data="customers" :loading="loading" />
+    <div class="url-api">
+      URL API: {{ urlApi }} <br />Selected customers:
+      {{ customersSelected.length }}
+    </div>
+    <GridData
+      :data="customers"
+      :loading="loading"
+      @selected-rows="selectedHander"
+    />
   </main>
 </template>
 
@@ -20,9 +27,12 @@ onMounted(() => {
   });
 });
 const customers = ref();
+const customersSelected = ref([]);
 const urlApi = ref(import.meta.env.VITE_API_URL);
 const customerService = ref(new CustomerService());
 const loading = ref(true);
+
+const selectedHander = (payload) => (customersSelected.value = payload);
 </script>
 
 <style>

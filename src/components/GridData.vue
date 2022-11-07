@@ -21,6 +21,7 @@
         'status',
       ]"
       responsiveLayout="scroll"
+      @update:selection="emits('selected-rows', $event)"
     >
       <template #header>
         <div class="flex justify-content-center align-items-center">
@@ -36,11 +37,8 @@
       </template>
       <template #empty> No customers found. </template>
       <template #loading> Loading customers data. Please wait. </template>
-      <ColumnTable
-        selectionMode="multiple"
-        headerStyle="width: 3rem"
-      ></ColumnTable>
-      <ColumnTable field="name" header="Name" sortable style="min-width: 14rem">
+      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+      <Column field="name" header="Name" sortable style="min-width: 14rem">
         <template #body="{ data }">
           {{ data.name }}
         </template>
@@ -48,12 +46,12 @@
           <InputText
             type="text"
             v-model="filterModel.value"
-            class="p-ColumnTable-filter"
+            class="p-Column-filter"
             placeholder="Search by name"
           />
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         field="country.name"
         header="Country"
         sortable
@@ -67,12 +65,12 @@
           <InputText
             type="text"
             v-model="filterModel.value"
-            class="p-ColumnTable-filter"
+            class="p-Column-filter"
             placeholder="Search by country"
           />
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         header="Agent"
         sortable
         filterField="representative"
@@ -97,7 +95,7 @@
             :options="representatives"
             optionLabel="name"
             placeholder="Any"
-            class="p-ColumnTable-filter"
+            class="p-Column-filter"
           >
             <template #option="slotProps">
               <div class="p-multiselect-representative-option">
@@ -111,8 +109,8 @@
             </template>
           </MultiSelect>
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         field="date"
         header="Date"
         sortable
@@ -129,8 +127,8 @@
             placeholder="mm/dd/yyyy"
           />
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         field="balance"
         header="Balance"
         sortable
@@ -148,8 +146,8 @@
             locale="en-US"
           />
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         field="status"
         header="Status"
         sortable
@@ -166,7 +164,7 @@
             v-model="filterModel.value"
             :options="statuses"
             placeholder="Any"
-            class="p-ColumnTable-filter"
+            class="p-Column-filter"
             :showClear="true"
           >
             <template #value="slotProps">
@@ -181,8 +179,8 @@
             </template>
           </Dropdown>
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         field="activity"
         header="Activity"
         sortable
@@ -199,28 +197,40 @@
             <span>{{ filterModel.value ? filterModel.value[1] : 100 }}</span>
           </div>
         </template>
-      </ColumnTable>
-      <ColumnTable
+      </Column>
+      <Column
         headerStyle="width: 4rem; text-align: center"
         bodyStyle="text-align: center; overflow: visible"
       >
         <template #body>
           <ButtonPrime type="button" icon="pi pi-cog"></ButtonPrime>
         </template>
-      </ColumnTable>
+      </Column>
     </DataTable>
   </div>
 </template>
 
 <script setup>
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
+import InputText from "primevue/inputtext";
+import InputNumber from "primevue/inputnumber";
+import MultiSelect from "primevue/multiselect";
+import Calendar from "primevue/calendar";
+import Dropdown from "primevue/dropdown";
+import Slider from "primevue/slider";
+import ButtonPrime from "primevue/button";
+import ProgressBar from "primevue/progressbar";
 import { ref } from "vue";
 
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 const props = defineProps({
-  data: [],
+  data: Object,
   loading: Boolean,
 });
+
+const emits = defineEmits("selected-rows");
 
 const selectedCustomers = ref();
 const filters = ref({
