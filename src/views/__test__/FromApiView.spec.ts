@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
 import { fireEvent, render, waitFor } from "@testing-library/vue";
-import FromApiView from "../FromApiView.vue";
 import PrimeVue from "primevue/config";
+import { describe, expect, it } from "vitest";
+import FromApiView from "../FromApiView.vue";
 
 describe("FromApiView", () => {
   describe("Rendering", () => {
@@ -70,7 +70,7 @@ describe("FromApiView", () => {
       await waitFor(
         async () => {
           expect(getByText(/Selected customers: 0/i));
-          const check = await getAllByRole("checkbox");
+          const check = getAllByRole("checkbox");
 
           await fireEvent.click(check[1]);
           await fireEvent.click(check[2]);
@@ -90,7 +90,7 @@ describe("FromApiView", () => {
           },
         });
 
-      const buttons = await getAllByRole("button");
+      const buttons = getAllByRole("button");
       await waitFor(async () => {
         await fireEvent.click(buttons[1]);
 

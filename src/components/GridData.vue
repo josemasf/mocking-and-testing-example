@@ -210,17 +210,17 @@
   </div>
 </template>
 
-<script setup>
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import InputText from "primevue/inputtext";
-import InputNumber from "primevue/inputnumber";
-import MultiSelect from "primevue/multiselect";
-import Calendar from "primevue/calendar";
-import Dropdown from "primevue/dropdown";
-import Slider from "primevue/slider";
+<script setup lang="ts">
 import ButtonPrime from "primevue/button";
+import Calendar from "primevue/calendar";
+import Column from "primevue/column";
+import DataTable from "primevue/datatable";
+import Dropdown from "primevue/dropdown";
+import InputNumber from "primevue/inputnumber";
+import InputText from "primevue/inputtext";
+import MultiSelect from "primevue/multiselect";
 import ProgressBar from "primevue/progressbar";
+import Slider from "primevue/slider";
 import { ref } from "vue";
 
 import { FilterMatchMode, FilterOperator } from "primevue/api";
@@ -230,7 +230,7 @@ const props = defineProps({
   loading: Boolean,
 });
 
-const emits = defineEmits("selected-rows");
+const emits = defineEmits(["selected-rows"]);
 
 const selectedCustomers = ref();
 const filters = ref({
@@ -280,14 +280,19 @@ const statuses = ref([
   "renewal",
   "proposal",
 ]);
-const formatDate = (value) => {
+const formatDate = (value: Date) => {
   return value.toLocaleDateString("en-US", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
 };
-const formatCurrency = (value) => {
+const formatCurrency = (value: {
+  toLocaleString: (
+    arg0: string,
+    arg1: { style: string; currency: string }
+  ) => any;
+}) => {
   return value.toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
