@@ -210,7 +210,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import ButtonPrime from "primevue/button";
 import Calendar from "primevue/calendar";
 import Column from "primevue/column";
@@ -225,10 +225,12 @@ import { ref } from "vue";
 
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
-const props = defineProps({
-  data: Object,
-  loading: Boolean,
-});
+export interface PropsTb {
+  data: Record<string, unknown>[];
+  loading: boolean;
+}
+
+const props = defineProps<PropsTb>();
 
 const emits = defineEmits(["selected-rows"]);
 

@@ -2,9 +2,16 @@
   "env": {
     "browser": true
   },
-  "extends": ["plugin:vue/vue3-essential", "@vue/typescript/recommended", "@vue/prettier"],
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "@vue/typescript/recommended",
+    "@vue/prettier"
+  ],
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
     "sourceType": "module"
   },
   "rules": {
