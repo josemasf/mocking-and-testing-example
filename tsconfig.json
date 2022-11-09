@@ -18,10 +18,9 @@
     },
     "removeComments": true,
     "allowJs": true,
-    "types": ["node", "vite"],
+    "types": ["node", "vite", "jest", "@testing-library/jest-dom"],
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -225,12 +225,10 @@ import { ref } from "vue";
 
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
-export interface PropsTb {
+const props = defineProps<{
   data: Record<string, unknown>[];
   loading: boolean;
-}
-
-const props = defineProps<PropsTb>();
+}>();
 
 const emits = defineEmits(["selected-rows"]);
 
