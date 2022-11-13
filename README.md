@@ -18,4 +18,6 @@ Este entorno nos utiliza la implentación de Mock Server Worker
 
 Para lanzar las suites de test en debemos especificar que entorno queremos usar
 
-``
+`npm run test:jss` debemos lanzarlo junto con `npm run mocks` si no recuperará datos.
+
+`npm run test:msw` ejecutará todo con éxito.
