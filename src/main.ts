@@ -8,6 +8,14 @@ import "primevue/resources/themes/saga-blue/theme.css"; //theme"
 import "primevue/resources/primevue.min.css"; //theme"
 import "primeicons/primeicons.css"; //theme"
 
+import { setupWorker } from "msw";
+import { handlers } from "@/mocks/handlers";
+
+if (import.meta.env.MODE === "msw") {
+  const worker = setupWorker(...handlers);
+  worker.start();
+}
+
 const app = createApp(App);
 
 app.use(router);
