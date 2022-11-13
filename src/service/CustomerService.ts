@@ -1,8 +1,9 @@
+import axios from "axios";
 export default class CustomerService {
   getCustomers() {
-    return fetch(`${import.meta.env.VITE_API_URL}/data`)
-      .then((res) => res.json())
-      .then((d) => d);
+    return axios
+      .get(`${import.meta.env.VITE_API_URL}/data`)
+      .then((response) => response.data);
   }
 
   getCustomersLarge() {

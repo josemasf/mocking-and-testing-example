@@ -226,7 +226,7 @@ import { ref } from "vue";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 const props = defineProps<{
-  data: Record<string, unknown>[];
+  data?: Record<string, unknown>[];
   loading: boolean;
 }>();
 

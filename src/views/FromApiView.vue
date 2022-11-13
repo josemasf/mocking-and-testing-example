@@ -4,6 +4,9 @@
       URL API: {{ urlApi }} <br />Selected customers:
       {{ customersSelected.length }}
     </div>
+    <div v-if="error">
+      {{ error }}
+    </div>
     <GridData
       :data="customers"
       :loading="loading"
@@ -12,27 +15,36 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import GridData from "../components/GridData.vue";
 import { ref, onMounted } from "vue";
 import CustomerService from "../service/CustomerService";
 
-onMounted(() => {
-  customerService.value.getCustomers().then((data) => {
-    customers.value = data;
-    customers.value.forEach(
-      (customer) => (customer.date = new Date(customer.date))
-    );
-    loading.value = false;
-  });
-});
 const customers = ref();
+const error = ref();
 const customersSelected = ref([]);
 const urlApi = ref(import.meta.env.VITE_API_URL);
 const customerService = ref(new CustomerService());
 const loading = ref(true);
 
-const selectedHander = (payload) => (customersSelected.value = payload);
+const selectedHander = (payload: never[]) =>
+  (customersSelected.value = payload);
+
+onMounted(() => {
+  customerService.value
+    .getCustomers()
+    .then((data) => {
+      customers.value = data;
+      customers.value.forEach(
+        (customer: { date: string | number | Date }) =>
+          (customer.date = new Date(customer.date))
+      );
+    })
+    .catch((error) => {
+      error.value = error;
+    })
+    .finally(() => (loading.value = false));
+});
 </script>
 
 <style>
