@@ -1,9 +1,11 @@
+import { rest } from "@/mocks/handlers";
+import { server } from "@/mocks/server";
 import { fireEvent, render, waitFor } from "@testing-library/vue";
 import PrimeVue from "primevue/config";
 import { describe, expect, it } from "vitest";
 import FromApiView from "../FromApiView.vue";
 
-describe.skip("FromApiView", () => {
+describe("FromApiView", () => {
   describe("Rendering", () => {
     it("should print url api", () => {
       const { getByText } = render(FromApiView, {
@@ -32,6 +34,22 @@ describe.skip("FromApiView", () => {
         },
       });
       await waitFor(() => expect(getByText("James Butt")));
+    });
+
+    it("should render no data", async () => {
+      server.use(
+        rest.get("/api/data", (req, res, context) => {
+          return res(context.status(404));
+        })
+      );
+
+      const { getByText } = render(FromApiView, {
+        global: {
+          plugins: [PrimeVue],
+        },
+      });
+
+      await waitFor(() => expect(getByText("No customers found.")));
     });
 
     it("should has searcher input", async () => {

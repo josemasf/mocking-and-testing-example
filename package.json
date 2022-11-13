@@ -12,7 +12,7 @@
     "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
     "test:jss": "vitest --ui --environment jsdom --mode jsserver",
     "test:jss:coverage": "vitest run --coverage --environment jsdom  --mode jsserver",
-    "test:msw": "vitest --ui --environment jsdom --mode mswTest",
+    "test:msw": "vitest --ui --environment jsdom --mode msw",
     "test:msw:coverage": "vitest run --coverage --environment jsdom  --mode msw",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "mocks": "json-server --watch db/customers.json --routes db/routes.json --port 3000"
