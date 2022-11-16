@@ -15,5 +15,16 @@ export default defineConfig({
   test: {
     globals: true,
     setupFiles: "src/test/setup.ts",
+    coverage: {
+      reporter: ["text", "json", "html"],
+      include: ["src/**/*.{vue,ts}"],
+      exclude: [
+        "src/**/DefaultView.vue",
+        "src/**/*.d.ts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+      ],
+      all: true,
+    },
   },
 });
